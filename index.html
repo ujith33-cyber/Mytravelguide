@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel & Tourist Guide</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: darkblue;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background: #333;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+
+        #home {
+            background: white;
+            text-align: center;
+        }
+
+        .place {
+            background: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: darkblue;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Popup Styling */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .popup-content {
+            background: white;
+            width: 320px;
+            padding: 20px;
+            margin: 100px auto;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup-content input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .popup-content button {
+            margin: 8px 5px;
+            padding: 8px 12px;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Welcome to My Travel & Tourist Guide</h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a onclick="openPopup()">Places</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- Home Section -->
+<section id="home">
+    <h2>Top Tourist Places in India</h2>
+    <p>Discover the beauty, culture, and heritage of India’s most famous destinations.</p>
+</section>
+
+<!-- Places Section -->
+<section id="places">
+
+    <div class="place">
+        <h2>Taj Mahal - Agra</h2>
+        <p>The Taj Mahal is one of the Seven Wonders of the World and a symbol of love.</p>
+        <img src="taj.jpg" alt="Taj Mahal">
+    </div>
+
+    <div class="place">
+        <h2>Goa Beaches - Goa</h2>
+        <p>Goa is famous for beaches like Baga and Calangute.</p>
+        <img src="goa.jpg" alt="Goa Beach">
+    </div>
+
+    <div class="place">
+        <h2>Tamil Nadu</h2>
+        <p>Important places: Mahabalipuram, Ooty, Rameswaram, Kodaikanal.</p>
+        <img src="tamilnadu.jpg" alt="Tamil Nadu">
+    </div>
+
+    <div class="place">
+        <h2>Kerala</h2>
+        <p>Important places: Munnar, Alleppey Backwaters, Kochi, Kovalam Beach.</p>
+        <img src="kerala.jpg" alt="Kerala">
+    </div>
+
+    <div class="place">
+        <h2>Karnataka</h2>
+        <p>Important places: Mysore Palace, Hampi, Coorg, Jog Falls.</p>
+        <img src="karnataka.jpg" alt="Karnataka">
+    </div>
+
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+
+    <h2>Tourist Guide Details</h2>
+    <p><strong>Name:</strong> Rajesh Kumar</p>
+    <p><strong>Experience:</strong> 10 Years Professional Tour Guide</p>
+    <p><strong>Phone:</strong> +91 9876543210</p>
+    <p><strong>Email:</strong> travelguide@email.com</p>
+
+    <hr>
+
+    <h2>Place Details</h2>
+    <ul>
+        <li>Taj Mahal – Agra</li>
+        <li>Goa Beaches</li>
+        <li>Tamil Nadu Temples</li>
+        <li>Kerala Backwaters</li>
+        <li>Karnataka Heritage Sites</li>
+    </ul>
+
+    <hr>
+
+    <h2>Hotel Details</h2>
+    <ul>
+        <li>3-Star and 5-Star Hotels</li>
+        <li>Free Breakfast</li>
+        <li>Wi-Fi & AC Rooms</li>
+        <li>Airport Pickup</li>
+    </ul>
+
+    <hr>
+
+    <h2>Travel Details</h2>
+    <ul>
+        <li>Private Car</li>
+        <li>Luxury Bus</li>
+        <li>Train Booking</li>
+        <li>Flight Booking Assistance</li>
+    </ul>
+
+</section>
+
+<!-- Popup Booking -->
+<div id="popup">
+    <div class="popup-content">
+        <h3>Travel Booking</h3>
+
+        <label>Destination:</label><br>
+        <input type="text" id="destination" placeholder="Enter destination"><br><br>
+
+        <label>Number of Members:</label><br>
+        <input type="number" id="members" placeholder="Enter members"><br><br>
+
+        <label>Number of Days:</label><br>
+        <input type="number" id="days" placeholder="Enter days"><br><br>
+
+        <button onclick="calculateCost()">Submit</button>
+        <button onclick="closePopup()">Close</button>
+
+        <p id="result"></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Travel Guide | Designed by You</p>
+</footer>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("result").innerHTML = "";
+}
+
+function calculateCost() {
+
+    var destination = document.getElementById("destination").value;
+    var members = document.getElementById("members").value;
+    var days = document.getElementById("days").value;
+
+    if(destination === "" || members === "" || days === "") {
+        alert("Please fill all details.");
+        return;
+    }
+
+    var costPerDay = 2000;
+    var totalCost = members * days * costPerDay;
+
+    document.getElementById("result").innerHTML =
+        "Destination: " + destination + "<br>" +
+        "Members: " + members + "<br>" +
+        "Days: " + days + "<br>" +
+        "Total Cost: ₹" + totalCost;
+}
+</script>
+
+</body>
+</html>
